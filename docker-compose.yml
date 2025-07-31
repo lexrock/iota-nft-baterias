@@ -1,0 +1,10 @@
+services:
+  iota-dev:
+    build: .
+    container_name: iota-dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    tty: true
