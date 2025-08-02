@@ -1,15 +1,27 @@
-// index.js
-console.log("IOTA dev environment running");
+import { Client } from '@iota/sdk';
 
-// Aquí es donde más adelante añadirás la lógica de conexión con el nodo Hornet
-// Ejemplo (futuro):
-// const { Client } = require('@iota/sdk');
-// const client = new Client({ nodes: ['http://hornet:14265'] });
+async function main() {
+  console.log("IOTA dev environment running");
 
-/**
- * Mantener el contenedor en ejecución.
- * Este bucle vacío evita que el contenedor se apague después de ejecutar el script.
- */
-setInterval(() => {
-  // Aquí podrías añadir lógica de comprobación cada cierto tiempo si quisieras
-}, 1000);
+  // Dirección del nodo Hornet
+  const NODE_URL = "http://100.94.154.44:14265";
+  // Nodo público de Shimmer testnet
+  //const NODE_URL = "https://api.testnet.shimmer.network";
+
+
+  // Crear cliente IOTA
+  const client = new Client({
+    nodes: [NODE_URL],
+    ignoreNodeHealth: true
+  });
+
+  try {
+    const info = await client.getInfo();
+    console.log("Conectado al nodo Hornet!");
+    console.log(info);
+  } catch (err) {
+    console.error("Error conectando al nodo:", err);
+  }
+}
+
+main();
