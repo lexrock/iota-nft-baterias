@@ -1,0 +1,30 @@
+{
+  "protocol": {
+    "networkName": "shimmer",
+    "bech32HRP": "smr"
+  },
+  "restAPI": {
+    "enabled": true,
+    "bindAddress": "0.0.0.0:14265"
+  },
+  "p2p": {
+    "bindMultiAddresses": [
+      "/ip4/0.0.0.0/tcp/15600"
+    ],
+    "peerStorage": "peers.db"
+  },
+  "node": {
+    "alias": "raspi-hornet",
+    "profile": "entry_node"
+  },
+  "logger": {
+    "level": "info"
+  },
+  "db": {
+    "autorevalidation": true,
+    "checkledgerstateonstartup": false,
+    "debug": false,
+    "engine": "rocksdb",
+    "path": "mainnet/database"
+}
+}
