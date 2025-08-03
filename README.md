@@ -1,3 +1,16 @@
+## Roadmap del proyecto
+
+Este proyecto forma parte de un estudio de investigación (doctorado) sobre la reutilización de baterías mediante tokenización en IOTA.  
+
+Las fases previstas son:
+
+1. **Fase 1** – Montaje de un nodo Hornet privado en Raspberry Pi (completada fuera de este repositorio).
+2. **Fase 2** – Desarrollo del cliente en Node.js para conectarse al nodo Hornet (este repositorio).
+3. **Fase 3** – Gestión de wallets y direcciones.
+4. **Fase 4** – Creación y gestión de NFTs para representar baterías.
+5. **Fase 5** – Implementación del marketplace descentralizado.
+
+
 # iota-nft-baterias
 
 Este proyecto es el entorno de desarrollo para crear un sistema basado en **IOTA** para la gestión de NFTs y tokens de baterías reutilizadas. Está diseñado para usarse en entornos donde el nodo está accesible por Tailscale o en la misma red local.
@@ -31,6 +44,9 @@ Antes de empezar asegúrate de tener instalados en tu máquina:
 
 - **index.js**  
   Contiene el código para conectarse al nodo Hornet usando `@iota/sdk`.
+    **Nota:** Si el nodo aparece como `isHealthy: false`, solo podrás conectarte y leer información básica.  
+    Para operaciones de transacciones, asegúrate de que el nodo está completamente sincronizado. De ahí el comando `ignoreNodeHealth: true`
+
 
 - **package.json**  
   Define las dependencias del proyecto.
