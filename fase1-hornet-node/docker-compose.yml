@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  hornet:
+    image: iotaledger/hornet:latest
+    container_name: hornet
+    ports:
+      - "14265:14265"   # Puerto API pública
+      - "15600:15600"   # Puerto de comunicación con otros nodos
+    volumes:
+      - ./config.json:/app/config.json
+      - ./peering.json:/app/peering.json
+      - ./db:/app/db
+    restart: unless-stopped
