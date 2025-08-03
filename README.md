@@ -1,19 +1,39 @@
-## Roadmap del proyecto
+# IOTA NFT Baterías - Roadmap del proyecto
 
-Este proyecto forma parte de un estudio de investigación (doctorado) sobre la reutilización de baterías mediante tokenización en IOTA.  
+Este proyecto forma parte de un estudio de investigación y doctorado cuyo objetivo es:
 
-Las fases previstas son:
+- Desarrollar un **sistema basado en blockchain (IOTA)** para:
+  - Tokenizar baterías reutilizadas.
+  - Crear un **mercado de intercambio de tokens**.
+  - Generar ingresos con la productividad de esas baterías reutilizadas (energía almacenada, economía circular).
 
-1. **Fase 1** – Montaje de un nodo Hornet privado en Raspberry Pi (completada fuera de este repositorio).
-2. **Fase 2** – Desarrollo del cliente en Node.js para conectarse al nodo Hornet (este repositorio).
-3. **Fase 3** – Gestión de wallets y direcciones.
-4. **Fase 4** – Creación y gestión de NFTs para representar baterías.
-5. **Fase 5** – Implementación del marketplace descentralizado.
+El sistema está dividido en varias fases:
 
+## **Fases del proyecto**
 
-# iota-nft-baterias
+### Fase 1 - Nodo Hornet
+- Desplegar un nodo Hornet (en Raspberry Pi usando Docker).
+- Dejarlo sincronizado (healthy).
 
-Este proyecto es el entorno de desarrollo para crear un sistema basado en **IOTA** para la gestión de NFTs y tokens de baterías reutilizadas. Está diseñado para usarse en entornos donde el nodo está accesible por Tailscale o en la misma red local.
+### Fase 2 - Cliente
+- Crear un cliente en Node.js que se conecte al nodo Hornet.
+- Probar conexión, leer información del nodo y sentar las bases para trabajar con la API.
+
+### Fase 3 - Wallet y tokens
+- Crear o integrar una **wallet** conectada al nodo.
+- Manejar balances, transferencias y creación de NFTs.
+
+### Fase 4 - Mercado
+- Implementar un marketplace donde se intercambien NFTs de baterías y se gestionen las transacciones.
+
+## **Repositorios y ramas**
+
+- `fase1-hornet-node`: configuración y despliegue del nodo Hornet.
+- `fase2-cliente`: cliente Node.js conectado al nodo Hornet.
+- `main`: documentación general.
+
+Cada fase se mantiene aislada en su propia rama para evitar errores y poder hacer rollback si algo falla.
+
 
 ## 1. Requisitos previos
 
@@ -38,51 +58,3 @@ Antes de empezar asegúrate de tener instalados en tu máquina:
   sudo apt install git
 
   # Cliente IOTA para nodo Hornet (Docker + Node.js)
-
-
-## 2. Archivos principales
-
-- **index.js**  
-  Contiene el código para conectarse al nodo Hornet usando `@iota/sdk`.
-    **Nota:** Si el nodo aparece como `isHealthy: false`, solo podrás conectarte y leer información básica.  
-    Para operaciones de transacciones, asegúrate de que el nodo está completamente sincronizado. De ahí el comando `ignoreNodeHealth: true`
-
-
-- **package.json**  
-  Define las dependencias del proyecto.
-
-- **Dockerfile**  
-  Construye la imagen de Node.js para ejecutar el cliente.
-
-- **.dockerignore**  
-  Ignora archivos innecesarios para acelerar la construcción de la imagen.
-
----
-
-## 3. Configuración
-
-1. Clona este repositorio:
-    git clone git@github.com:TU_USUARIO/iota-nft-baterias.git
-    cd iota-nft-baterias
-
-2. Edita index.js y cambia la constante NODE_URL por la dirección de tu nodo Hornet:
-    const NODE_URL = "http://100.94.154.44:14265";
-
-3. Construye la imagen Docker:
-    docker build -t iota-nft .
-
-4. Ejecuta el contenedor:
-    docker run --rm --network host iota-nft
-
-## 3. CComandos últiles de Docker
-
-    Eliminar contenedores e imágenes en conflicto:
-
-        docker stop $(docker ps -aq) || true
-        docker system prune -af
-
-    Reconstruir desde cero:
-
-        docker build --no-cache -t iota-nft .
-        docker run --rm --network host iota-nft
-
